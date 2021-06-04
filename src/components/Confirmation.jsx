@@ -45,7 +45,13 @@ function Confirmation() {
                             <td>71.28 USD</td>
                         </tr>
                     </tbody>
-                </table>
+                    </table>
+                    <div className="d-flex flex-column align-items-end p-2 bg-light">
+                        <div>Total: <span className="h2">71.28 USD</span></div>
+                        <span>Impuestos incluidos</span>
+                    </div>
+                    
+                
             </Content>
         </Container>
     )
