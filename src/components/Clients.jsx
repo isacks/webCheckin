@@ -1,14 +1,35 @@
 import React from 'react';
 import styled from 'styled-components';
+import Client from './Client';
 
-function Clients() {
+function Clients({ clients }) {
+
+    const editClient = (e) => {
+        console.log(e);
+    }
+
+    const removeClient = (e) => {
+        console.log(e)
+    }
+
+    const copyLink = (e) => {
+        const el = e.parentElement.parentElement.parentElement;
+        const attrib = el.getAttribute('regid');
+        const linkInput = document.createElement('input');
+        linkInput.value = window.location.href + attrib;
+        document.body.appendChild(linkInput);
+        linkInput.select();
+        document.execCommand("copy");
+        document.body.removeChild(linkInput);
+    }
+
     return (
         <Container>
             <Content className="container">
                 <h1>Clientes registrados recientemente</h1>
                 <h6 className="text-muted">Los clientes más recientes se muestran arriba</h6>
                 <ClientsList>
-                    <Client>
+                    <div className="table-responsive">
                         <table className="table table-sm table-hover text-center">
                             <thead className="bg-light">
                                 <tr>
@@ -18,20 +39,23 @@ function Clients() {
                                     <th>País</th>
                                     <th>Tipo de Habitación</th>
                                     <th>Entrada / Salida</th>
+                                    <th>Opciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>EDUARDO DE LEON</td>
-                                    <td>BOOKING</td>
-                                    <td>RFS5324</td>
-                                    <td>PANAMA</td>
-                                    <td>JS</td>
-                                    <td>01/06/2021 / 03/06/2021</td>
-                                </tr>
+                                {clients.map((clientData, key) => (
+                                    <Client 
+                                        client={clientData} 
+                                        key={key}
+                                        editClient={editClient}
+                                        removeClient={removeClient}
+                                        copyLink={copyLink}
+                                    />
+                                ))}
                             </tbody>
                         </table>
-                    </Client>
+                    </div>
+
                 </ClientsList>
             </Content>
         </Container>
@@ -48,11 +72,4 @@ const Content = styled.div`
 `;
 const ClientsList = styled.div`
     margin-top: 15px;
-`;
-const Client = styled.div`
-    table{
-        td:hover{
-            cursor: pointer;
-        }
-    }
 `;

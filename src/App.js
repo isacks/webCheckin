@@ -13,13 +13,26 @@ function App() {
 
   const [clients, setClients] = useState([
     {
-      name: '',
-      agency: '',
-      country: '',
-      roomType: '',
-      roomNum: '',
-      chechinDate: '',
-      checkoutDate: ''
+      id: 1210,
+      name: 'EDUARDO DE LEON',
+      agency: 'BOOKING',
+      reserve: 'RFS5324',
+      country: 'PANAMA',
+      roomType: 'JS',
+      roomNum: '816',
+      checkinDate: '07/06/2021',
+      checkoutDate: '09/06/2021'
+    },
+    {
+      id: 1211,
+      name: 'DAVID DE LEON',
+      agency: 'PARTICULAR',
+      reserve: 'RFS5325',
+      country: 'COLOMBIA',
+      roomType: 'JS',
+      roomNum: '818',
+      checkinDate: '07/06/2021',
+      checkoutDate: '12/06/2021'
     }
   ]);
 
@@ -42,7 +55,7 @@ function App() {
         </Route>
         <Route path="/">
           <Clients
-            clients = {clients}
+            clients={clients}
           />
         </Route>
       </Switch>
