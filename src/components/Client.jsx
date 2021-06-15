@@ -5,20 +5,20 @@ import LinkIcon from '@material-ui/icons/Link';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-function Client({ client, editClient, removeClient, copyLink}) {
+function Client({ client, editClient, removeClient, copyLink, }) {
     return (
         <tr regid={client.id}>
-            <td>{client.name}</td>
+            <td>{client.name +' '+ client.surname}</td>
             <td>{client.agency}</td>
             <td>{client.reserve}</td>
             <td>{client.country}</td>
             <td>JS</td>
-            <td>{client.checkinDate} / {client.checkoutDate}</td>
+            <td>{client.chkinDate} / {client.chkoutDate}</td>
             <td>
                 <OptionIcons className="d-flex align-items-center justify-content-around clear-fix">
-                    <div onClick={(e) => copyLink(e.currentTarget)}><LinkIcon/></div>
+                    <div onClick={() => copyLink(client.id)}><LinkIcon/></div>
                     <div><EditIcon onClick={() => editClient("Editing...")} /></div>
-                    <div><DeleteIcon onClick={() => removeClient("Removing...")}/></div>
+                    <div><DeleteIcon onClick={() => removeClient(client.id)}/></div>
                 </OptionIcons>
             </td>
         </tr>

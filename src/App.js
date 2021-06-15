@@ -14,30 +14,46 @@ function App() {
   const [clients, setClients] = useState([
     {
       id: 1210,
-      name: 'EDUARDO DE LEON',
+      name: 'EDUARDO',
+      surname: 'DE LEON',
       agency: 'BOOKING',
       reserve: 'RFS5324',
       country: 'PANAMA',
       roomType: 'JS',
       roomNum: '816',
-      checkinDate: '07/06/2021',
-      checkoutDate: '09/06/2021'
+      chkinDate: '07/06/2021',
+      chkoutDate: '09/06/2021'
     },
     {
       id: 1211,
-      name: 'DAVID DE LEON',
+      name: 'DAVID',
+      surname: 'DE LEON',
       agency: 'PARTICULAR',
       reserve: 'RFS5325',
       country: 'COLOMBIA',
       roomType: 'JS',
       roomNum: '818',
-      checkinDate: '07/06/2021',
-      checkoutDate: '12/06/2021'
+      chkinDate: '07/06/2021',
+      chkoutDate: '12/06/2021'
+    },
+    {
+      id: 1212,
+      name: 'MOISES',
+      surname: 'DE LEON',
+      agency: 'EXPEDIA',
+      reserve: 'RFS5326',
+      country: 'VENEZUELA',
+      roomType: 'SD',
+      roomNum: '815',
+      chkinDate: '07/06/2021',
+      chkoutDate: '12/06/2021'
     }
   ]);
 
   const addClient = (data) => {
-    console.log(data)
+    clients.push(data);
+    setClients([...clients]);
+    console.log(clients);
   }
 
   return (
@@ -56,6 +72,7 @@ function App() {
         <Route path="/">
           <Clients
             clients={clients}
+            setClients={setClients}
           />
         </Route>
       </Switch>

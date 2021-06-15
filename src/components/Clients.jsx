@@ -2,21 +2,24 @@ import React from 'react';
 import styled from 'styled-components';
 import Client from './Client';
 
-function Clients({ clients }) {
+function Clients({ clients, setClients }) {
 
+    const saveClient = () => {
+
+    }
+ 
     const editClient = (e) => {
         console.log(e);
     }
 
-    const removeClient = (e) => {
-        console.log(e)
+    const removeClient = (clientId) => {
+        clients.splice(clients.findIndex((client) => client.id === clientId), 1);
+        setClients([...clients]);
     }
 
-    const copyLink = (e) => {
-        const el = e.parentElement.parentElement.parentElement;
-        const attrib = el.getAttribute('regid');
+    const copyLink = (clientId) => {
         const linkInput = document.createElement('input');
-        linkInput.value = window.location.href + attrib;
+        linkInput.value = window.location.href + clientId;
         document.body.appendChild(linkInput);
         linkInput.select();
         document.execCommand("copy");
@@ -43,15 +46,19 @@ function Clients({ clients }) {
                                 </tr>
                             </thead>
                             <tbody>
-                                {clients.map((clientData, key) => (
-                                    <Client 
-                                        client={clientData} 
-                                        key={key}
-                                        editClient={editClient}
-                                        removeClient={removeClient}
-                                        copyLink={copyLink}
-                                    />
-                                ))}
+                                {clients.length > 0 ?
+                                    clients.map((clientData, key) => (
+                                        <Client
+                                            client={clientData}
+                                            key={key}
+                                            editClient={editClient}
+                                            removeClient={removeClient}
+                                            copyLink={copyLink}
+                                        />
+                                    ))
+                                    :
+                                    <tr><td colSpan="7">No hay Registros</td></tr>
+                                }
                             </tbody>
                         </table>
                     </div>
